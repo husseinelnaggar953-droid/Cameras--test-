@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار الكاميرا</title>
+<style>
+body {
+  background: #111;
+  color: white;
+  text-align: center;
+  font-family: Arial;
+  padding: 20px;
+}
+video {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+button {
+  padding: 15px 25px;
+  background: #00a86b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+}
+</style>
+</head>
+<body>
+
+<h2>اختبار الكاميرا</h2>
+<p>اضغط لتشغيل الكاميرا بعد السماح بالإذن</p>
+
+<button onclick="startCamera()">تشغيل الكاميرا</button>
+
+<br>
+
+<video id="camera" autoplay playsinline></video>
+
+<script>
+async function startCamera() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: false
+    });
+    document.getElementById("camera").srcObject = stream;
+  } catch (error) {
+    alert("تعذر تشغيل الكاميرا. تأكد من السماح بالإذن.");
+  }
+}
+</script>
+
+</body>
+</html>
